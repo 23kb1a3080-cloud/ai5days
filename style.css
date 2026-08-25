@@ -1,0 +1,1942 @@
+/* ==========================================================================
+   AI-POWERED MICROSOFT EXCEL WORKSHOP - COMPREHENSIVE DESIGN SYSTEM
+   ========================================================================== */
+
+:root {
+  /* Dark Theme (Default) */
+  --bg-app: #0b0f19;
+  --bg-surface: #111827;
+  --bg-card: rgba(17, 24, 39, 0.85);
+  --bg-card-hover: rgba(31, 41, 55, 0.95);
+  --bg-input: #1e293b;
+  --bg-accent-subtle: rgba(59, 130, 246, 0.1);
+  
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-focus: #3b82f6;
+  
+  --text-main: #f3f4f6;
+  --text-muted: #9ca3af;
+  --text-faint: #6b7280;
+  --text-inverse: #0f172a;
+  
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  --secondary: #8b5cf6;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+  --accent-cyan: #06b6d4;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.5);
+  --glass-blur: blur(16px);
+  
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-serif: 'Times New Roman', 'Cinzel', serif;
+}
+
+[data-theme="light"] {
+  --bg-app: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-card-hover: #ffffff;
+  --bg-input: #f1f5f9;
+  --bg-accent-subtle: rgba(37, 99, 235, 0.06);
+  
+  --border-color: #e2e8f0;
+  --border-focus: #2563eb;
+  
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-faint: #94a3b8;
+  --text-inverse: #ffffff;
+
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Reset & Base Setup */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 15px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Typography Utilities */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-main);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+p { margin-bottom: 0.75rem; }
+a { color: var(--primary); text-decoration: none; transition: color 0.2s; }
+a:hover { text-decoration: underline; }
+
+.font-mono { font-family: var(--font-mono); }
+.text-amber { color: var(--accent-amber); }
+.text-emerald { color: var(--accent-emerald); }
+.text-blue { color: var(--primary); }
+.text-muted { color: var(--text-muted); }
+.mt-4 { margin-top: 1rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+
+/* ==========================================================================
+   BUTTONS & CONTROLS
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--primary-gradient);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.45);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--border-color);
+  color: var(--text-main);
+}
+
+.btn-outline:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--text-muted);
+}
+
+.btn-danger-outline {
+  background: transparent;
+  border-color: rgba(244, 63, 94, 0.4);
+  color: var(--accent-rose);
+}
+
+.btn-danger-outline:hover {
+  background: rgba(244, 63, 94, 0.15);
+  border-color: var(--accent-rose);
+}
+
+.btn-sm {
+  padding: 0.35rem 0.8rem;
+  font-size: 0.82rem;
+  border-radius: var(--radius-sm);
+}
+
+.btn-icon {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+.btn-icon:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.btn-text-edit {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: background 0.2s;
+}
+
+.btn-text-edit:hover {
+  background: var(--bg-accent-subtle);
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.badge-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.badge-primary { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+.badge-info { background: rgba(139, 92, 246, 0.15); color: #c084fc; border: 1px solid rgba(139, 92, 246, 0.3); }
+.badge-success { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+
+/* ==========================================================================
+   HEADER NAVIGATION
+   ========================================================================== */
+
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-surface);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.65rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.institute-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background: #ffffff;
+  padding: 2px;
+  box-shadow: var(--shadow-sm);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.brand-title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+}
+
+.brand-subtitle {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent-amber);
+  font-style: italic;
+  opacity: 0.9;
+}
+
+/* View Toggle Pill */
+.view-toggle-pill {
+  display: flex;
+  background: var(--bg-input);
+  padding: 0.25rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+}
+
+.view-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1rem;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.view-btn:hover {
+  color: var(--text-main);
+}
+
+.view-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.4);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* ==========================================================================
+   GLOBAL STUDENT QUICK BAR
+   ========================================================================== */
+
+.student-quick-bar {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.65rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.quick-bar-content {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.profile-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.chip-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-accent-subtle);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.chip-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.chip-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-faint);
+  line-height: 1;
+}
+
+.chip-value {
+  font-size: 0.85rem;
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.quick-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--accent-emerald);
+  box-shadow: 0 0 8px var(--accent-emerald);
+}
+
+/* ==========================================================================
+   VIEW 1: INTERACTIVE STUDIO LAYOUT
+   ========================================================================== */
+
+.view-panel {
+  display: none;
+}
+
+.view-panel.active {
+  display: block;
+}
+
+.studio-hero {
+  padding: 2.2rem 0 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.hero-title {
+  font-size: 2.3rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #ffffff 40%, #93c5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .hero-title {
+  background: linear-gradient(135deg, #0f172a 40%, #2563eb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 680px;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  min-width: 280px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 0.85rem 1.1rem;
+  border-radius: var(--radius-md);
+  backdrop-filter: var(--glass-blur);
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.1;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+/* Day Navigation Tabs */
+.day-nav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.5rem 0 1.2rem 0;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1.5rem;
+}
+
+.day-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 1.2rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.day-tab-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--primary);
+  color: var(--text-main);
+}
+
+.day-tab-btn.active {
+  background: var(--primary-gradient);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+}
+
+.day-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   DAY CONTENT GRID & SECTIONS
+   ========================================================================== */
+
+.day-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+  margin-bottom: 3rem;
+}
+
+.day-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Card & Box Containers */
+.card-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-md);
+  transition: border-color 0.2s ease;
+}
+
+.card-box:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.card-header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.card-header-flex h3 {
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Structured Daily Data Items */
+.info-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--primary);
+}
+
+[data-theme="light"] .info-item {
+  background: #f8fafc;
+}
+
+.info-item-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.info-item-value {
+  font-size: 14px;
+  color: var(--text-main);
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.editable-area {
+  outline: none;
+  border-radius: var(--radius-sm);
+  padding: 0.2rem 0.4rem;
+  transition: background 0.2s, box-shadow 0.2s;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+  display: block;
+}
+
+.editable-area:focus {
+  background: var(--bg-input);
+  box-shadow: 0 0 0 2px var(--primary);
+}
+
+/* Confidence Rating Pills */
+.confidence-selector {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.confidence-pill {
+  flex: 1;
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.confidence-pill.active {
+  background: var(--accent-emerald);
+  color: #ffffff;
+  border-color: var(--accent-emerald);
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35);
+}
+
+/* Star Rating */
+.star-rating-box {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 1.2rem;
+  color: var(--accent-amber);
+  margin-top: 0.4rem;
+}
+
+.star-icon {
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.star-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Reflection Q&A Accordion Items */
+.reflection-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.reflection-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.1rem;
+}
+
+.reflection-question {
+  font-size: 14px;
+  font-weight: 700;
+  color: #93c5fd;
+  margin-bottom: 0.4rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+[data-theme="light"] .reflection-question {
+  color: #1d4ed8;
+}
+
+.reflection-answer {
+  font-size: 14px;
+  color: var(--text-main);
+  line-height: 1.5;
+  padding-left: 1.2rem;
+}
+
+/* ==========================================================================
+   INTERACTIVE SIMULATOR WIDGETS (EXCEL & AI TOOLS)
+   ========================================================================== */
+
+.simulator-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+  box-shadow: var(--shadow-md);
+}
+
+.sim-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sim-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Live Excel Table Simulator */
+.excel-table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  margin-bottom: 1rem;
+}
+
+.excel-grid {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  background: var(--bg-app);
+}
+
+.excel-grid th {
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border-color);
+  font-family: var(--font-heading);
+}
+
+.excel-grid td {
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+.excel-grid input {
+  width: 100%;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 0.2rem 0.3rem;
+  border-radius: 3px;
+}
+
+.excel-grid input:focus {
+  background: var(--bg-input);
+  border-color: var(--primary);
+  outline: none;
+}
+
+.excel-grid .calc-cell {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--accent-emerald);
+}
+
+/* Copilot Prompt Assistant Simulator */
+.copilot-box {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.copilot-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #c084fc;
+  margin-bottom: 0.5rem;
+}
+
+.copilot-input-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.copilot-input-group input {
+  flex: 1;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  padding: 0.45rem 0.75rem;
+  font-size: 0.85rem;
+}
+
+.copilot-response {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-family: var(--font-mono);
+  color: #93c5fd;
+  border-left: 2px solid var(--secondary);
+}
+
+/* Power Query Pipeline Simulator (Day 2) */
+.pipeline-steps {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+}
+
+.pipeline-step-badge {
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.pipeline-step-badge.active {
+  background: var(--accent-cyan);
+  color: #0f172a;
+  border-color: var(--accent-cyan);
+  font-weight: 700;
+}
+
+/* KPI Metric Cards (Day 4) */
+.kpi-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+  margin-bottom: 1.2rem;
+}
+
+.kpi-metric-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-val {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1.2;
+}
+
+.kpi-sub {
+  font-size: 0.75rem;
+  color: var(--accent-emerald);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.2rem;
+}
+
+/* Office Scripts Code Simulator (Day 5) */
+.code-editor-box {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: #e6edf3;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+}
+
+.code-keyword { color: #ff7b72; font-weight: 600; }
+.code-func { color: #d2a8ff; }
+.code-string { color: #a5d6ff; }
+.code-comment { color: #8b949e; font-style: italic; }
+
+/* ==========================================================================
+   OVERVIEW & CERTIFICATE GENERATOR TAB
+   ========================================================================== */
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1.75rem;
+}
+
+.workshop-syllabus-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.syllabus-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: transform 0.2s, border-color 0.2s;
+  cursor: pointer;
+}
+
+.syllabus-item:hover {
+  transform: translateX(4px);
+  border-color: var(--primary);
+}
+
+.syllabus-day-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 50px;
+  height: 50px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-accent-subtle);
+  color: var(--primary);
+  font-weight: 800;
+  font-size: 0.8rem;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.syllabus-day-badge span {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.syllabus-info h4 {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.syllabus-info p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   VIEW 2: INSTITUTIONAL DOCUMENT MODE (PRINT / PDF STYLES)
+   ========================================================================== */
+
+.document-mode-container {
+  background: #2b303a;
+  min-height: 100vh;
+  padding-bottom: 4rem;
+}
+
+[data-theme="light"] .document-mode-container {
+  background: #cbd5e1;
+}
+
+.document-toolbar {
+  position: sticky;
+  top: 57px;
+  z-index: 90;
+  background: rgba(17, 24, 39, 0.95);
+  backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.65rem 0;
+  box-shadow: var(--shadow-md);
+}
+
+.toolbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.toolbar-info {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  color: #e2e8f0;
+}
+
+.toolbar-info i {
+  color: var(--accent-rose);
+  font-size: 1.2rem;
+}
+
+.document-pages-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 2.5rem 1rem;
+}
+
+/* The A4 Page Container */
+.printable-a4-page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 12mm 12mm;
+  margin: 0 auto;
+  background: #ffffff;
+  color: #111827;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  position: relative;
+  font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Institutional Outer Border Frame for EVERY Page */
+.page-border-frame {
+  border: 3px double #1e3a8a;
+  outline: 1px solid #1e3a8a;
+  outline-offset: 3px;
+  min-height: 270mm;
+  padding: 12mm 14mm;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: #ffffff;
+}
+
+/* -------------------------------------------------------------
+   PAGE 1: CERTIFICATE IMAGE PAGE (1:1 DIRECT EMBED)
+   ------------------------------------------------------------- */
+.cert-image-page {
+  padding: 8mm !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.cert-image-container {
+  width: 100%;
+  height: 100%;
+  min-height: 275mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.cert-full-image {
+  width: 100%;
+  height: 100%;
+  max-height: 275mm;
+  object-fit: contain;
+  display: block;
+}
+
+.cert-header-row {
+  display: flex;
+  align-items: center;
+  margin-top: 4mm;
+  margin-bottom: 24mm;
+  width: 100%;
+}
+
+.cert-logo-container {
+  width: 105px;
+  flex-shrink: 0;
+}
+
+.cert-seal-img {
+  width: 95px;
+  height: 95px;
+  display: block;
+}
+
+.cert-title-container {
+  flex: 1;
+  text-align: center;
+  padding-right: 35px; /* balances the emblem to center the institute title on the sheet */
+}
+
+.cert-inst-title {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20pt;
+  font-weight: bold;
+  font-style: italic;
+  color: #000000;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.cert-inst-location {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16pt;
+  font-weight: bold;
+  font-style: italic;
+  color: #000000;
+}
+
+.cert-title-heading {
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 19pt;
+  font-weight: bold;
+  font-style: italic;
+  letter-spacing: 1.5px;
+  color: #000000;
+  margin: 10mm 0 28mm 0;
+}
+
+.cert-body-text {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 13.5pt;
+  font-weight: bold;
+  font-style: italic;
+  color: #000000;
+  line-height: 2.2;
+  margin-bottom: 25mm;
+  width: 100%;
+}
+
+.cert-line-right {
+  text-align: right;
+  padding-right: 1mm;
+  margin-bottom: 2px;
+}
+
+.cert-line-full {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.cert-dotted-fill {
+  flex: 1;
+  border-bottom: 1.8px dotted #000000;
+  margin-left: 6px;
+  min-height: 1.2em;
+  display: inline-flex;
+  align-items: flex-end;
+}
+
+.cert-dotted-fill-roll {
+  width: 200px;
+  border-bottom: 1.8px dotted #000000;
+  margin: 0 6px;
+  min-height: 1.2em;
+  display: inline-flex;
+  align-items: flex-end;
+}
+
+.cert-dotted-fill-year {
+  flex: 1;
+  border-bottom: 1.8px dotted #000000;
+  margin-left: 6px;
+  min-height: 1.2em;
+  display: inline-flex;
+  align-items: flex-end;
+}
+
+.cert-fill-val {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-style: italic;
+  color: #000000;
+  font-size: 13pt;
+  padding: 0 4px;
+}
+
+.cert-signatures-stacked {
+  margin-top: auto;
+  padding-left: 2mm;
+  margin-bottom: 16mm;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: italic;
+  color: #000000;
+}
+
+.cert-sig-item {
+  margin-bottom: 24mm;
+}
+
+.cert-sig-item:last-child {
+  margin-bottom: 0;
+}
+
+/* -------------------------------------------------------------
+   PAGE 2: INDEX TABLE LAYOUT
+   ------------------------------------------------------------- */
+.index-page-content {
+  padding: 10mm 5mm;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+}
+
+.index-main-heading {
+  text-align: center;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  font-size: 20pt;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 15mm;
+}
+
+.index-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+}
+
+.index-table th, .index-table td {
+  border: 1.5px solid #000000;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #000000;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+}
+
+.index-table th {
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  font-size: 14px;
+}
+
+.index-table td.col-date { width: 15%; text-align: center; font-size: 14px; font-weight: normal; }
+.index-table td.col-report { width: 55%; line-height: 1.5; font-size: 14px; font-weight: normal; }
+.index-table td.col-page { width: 12%; text-align: center; font-size: 14px; font-weight: normal; }
+.index-table td.col-sig { width: 18%; text-align: center; font-size: 14px; font-weight: normal; }
+
+/* -------------------------------------------------------------
+   PAGES 3–12: DAILY REPORTS LAYOUT (Times New Roman, 14px, Normal Answers)
+   ------------------------------------------------------------- */
+.report-doc-header {
+  text-align: center;
+  margin-bottom: 10px;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+}
+
+.report-inst-name {
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  font-size: 13.5pt;
+  font-weight: bold;
+  color: #000000;
+  letter-spacing: 0.5px;
+}
+
+.report-inst-city {
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  font-size: 12.5pt;
+  font-weight: bold;
+  color: #000000;
+}
+
+.report-inst-dept {
+  font-size: 9.5pt;
+  font-weight: bold;
+  color: #000000;
+  margin-top: 2px;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+}
+
+.report-workshop-banner {
+  text-align: center;
+  margin: 10px 0 8px 0;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+}
+
+.report-workshop-title {
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  font-size: 13pt;
+  font-weight: bold;
+  color: #000000;
+  letter-spacing: 0.5px;
+}
+
+.report-workshop-sub {
+  font-size: 9.5pt;
+  color: #000000;
+  font-weight: normal;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+}
+
+.report-day-headline {
+  font-size: 11pt;
+  font-weight: bold;
+  color: #000000;
+  margin: 8px 0 10px 0;
+  line-height: 1.35;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+}
+
+/* Institutional Profile Table */
+.report-profile-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+}
+
+.report-profile-table td {
+  border: 1px solid #000000;
+  padding: 5px 8px;
+  font-size: 14px;
+  color: #000000;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.report-profile-table td.field-title {
+  width: 32%;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.report-profile-table td.field-content {
+  width: 68%;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+/* Section Headings (Preserved) */
+.doc-section-title {
+  font-size: 10.5pt;
+  font-weight: bold;
+  color: #000000;
+  margin: 8px 0 4px 0;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.doc-text-block {
+  font-size: 14px;
+  line-height: 1.45;
+  color: #000000;
+  margin-bottom: 5px;
+  font-weight: normal;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.doc-text-block strong {
+  font-weight: bold;
+}
+
+.doc-reflection-q {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000000;
+  margin-top: 6px;
+  margin-bottom: 2px;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.doc-reflection-a {
+  font-size: 14px;
+  color: #000000;
+  line-height: 1.45;
+  margin-bottom: 6px;
+  font-weight: normal;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.doc-reflection-a strong {
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   MODAL DIALOGS
+   ========================================================================== */
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: var(--glass-blur);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.modal-backdrop.open {
+  display: flex;
+}
+
+.modal-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 760px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  animation: modalFadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-header {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.modal-close:hover { color: var(--text-main); }
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+}
+
+.modal-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-group label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-control {
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.data-action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.btn-file-upload {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Toast System */
+.toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.toast-msg {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 0.75rem 1.2rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  animation: toastSlideIn 0.3s ease;
+}
+
+.toast-msg.toast-success { border-left: 4px solid var(--accent-emerald); }
+.toast-msg.toast-info { border-left: 4px solid var(--primary); }
+
+@keyframes toastSlideIn {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ==========================================================================
+   PRINT / PDF MEDIA STYLES
+   ========================================================================== */
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  html, body {
+    width: 210mm !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .no-print, 
+  .top-nav, 
+  .student-quick-bar, 
+  .document-toolbar, 
+  .modal-backdrop, 
+  .toast-container,
+  #view-studio {
+    display: none !important;
+  }
+
+  .document-mode-container {
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .document-pages-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  .printable-a4-page {
+    width: 210mm !important;
+    height: 296mm !important;
+    min-height: 296mm !important;
+    max-height: 296mm !important;
+    padding: 8mm 10mm !important;
+    margin: 0 auto !important;
+    box-shadow: none !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+  }
+
+  .printable-a4-page:last-child {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  .page-border-frame {
+    border: 3px double #000000 !important;
+    outline: 1px solid #000000 !important;
+    outline-offset: 2px !important;
+    height: 100% !important;
+    max-height: 278mm !important;
+    box-sizing: border-box !important;
+    padding: 7mm 9mm !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .cert-image-page {
+    padding: 0 !important;
+    margin: 0 auto !important;
+    width: 210mm !important;
+    height: 296mm !important;
+    min-height: 296mm !important;
+    max-height: 296mm !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    overflow: hidden !important;
+  }
+
+  .cert-image-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .cert-full-image {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 296mm !important;
+    object-fit: contain !important;
+    display: block !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Typography in print: Times New Roman, 14px body, normal non-bold answers, preserved headings */
+  .report-doc-header { margin-bottom: 6px !important; }
+  .report-inst-name { font-size: 13.5pt !important; font-weight: bold !important; font-family: 'Times New Roman', Times, serif !important; }
+  .report-inst-city { font-size: 12.5pt !important; font-weight: bold !important; font-family: 'Times New Roman', Times, serif !important; }
+  .report-inst-dept { font-size: 9.5pt !important; font-weight: bold !important; margin-top: 1px !important; font-family: 'Times New Roman', Times, serif !important; }
+  .report-workshop-banner { margin: 6px 0 4px 0 !important; }
+  .report-workshop-title { font-size: 13pt !important; font-weight: bold !important; font-family: 'Times New Roman', Times, serif !important; }
+  .report-workshop-sub { font-size: 9.5pt !important; font-weight: normal !important; font-family: 'Times New Roman', Times, serif !important; }
+  .report-day-headline { font-size: 11pt !important; font-weight: bold !important; margin: 4px 0 6px 0 !important; font-family: 'Times New Roman', Times, serif !important; }
+  
+  .report-profile-table td { padding: 3px 6px !important; font-size: 14px !important; font-family: 'Times New Roman', Times, serif !important; overflow-wrap: break-word !important; word-wrap: break-word !important; word-break: break-word !important; }
+  .report-profile-table td.field-title { font-weight: bold !important; font-size: 14px !important; }
+  .report-profile-table td.field-content { font-weight: normal !important; font-size: 14px !important; }
+
+  .doc-section-title { font-size: 10.5pt !important; font-weight: bold !important; margin: 6px 0 2px 0 !important; font-family: 'Times New Roman', Times, serif !important; overflow-wrap: break-word !important; word-break: break-word !important; }
+  
+  .doc-text-block { font-size: 14px !important; line-height: 1.38 !important; margin-bottom: 3.5px !important; font-weight: normal !important; font-family: 'Times New Roman', Times, serif !important; overflow-wrap: break-word !important; word-wrap: break-word !important; word-break: break-word !important; }
+  .doc-text-block strong { font-weight: bold !important; }
+
+  .doc-reflection-q { font-size: 14px !important; font-weight: bold !important; margin-top: 4px !important; margin-bottom: 1px !important; font-family: 'Times New Roman', Times, serif !important; overflow-wrap: break-word !important; word-wrap: break-word !important; word-break: break-word !important; }
+  .doc-reflection-a { font-size: 14px !important; line-height: 1.38 !important; margin-bottom: 4px !important; font-weight: normal !important; font-family: 'Times New Roman', Times, serif !important; overflow-wrap: break-word !important; word-wrap: break-word !important; word-break: break-word !important; }
+  .doc-reflection-a strong { font-weight: bold !important; }
+
+  .index-table th, .index-table td { padding: 5px 8px !important; font-size: 14px !important; font-family: 'Times New Roman', Times, serif !important; overflow-wrap: break-word !important; word-wrap: break-word !important; word-break: break-word !important; }
+  .index-table td { font-weight: normal !important; }
+  .index-main-heading { font-size: 20pt !important; font-weight: bold !important; margin-bottom: 10mm !important; font-family: 'Times New Roman', Times, serif !important; }
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS — FULL MOBILE SUPPORT
+   ========================================================================== */
+
+/* ---- Tablet (≤992px) ---- */
+@media (max-width: 992px) {
+  .studio-hero {
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.5rem 0 1rem 0;
+  }
+  .hero-stats {
+    width: 100%;
+    min-width: 0;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .day-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+  .overview-grid { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-grid-3 { grid-template-columns: 1fr; }
+  .kpi-cards-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Document A4 pages: scale down to fit tablet width */
+  .printable-a4-page {
+    width: 100% !important;
+    min-height: unset;
+    padding: 8mm !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  }
+  .page-border-frame {
+    padding: 6mm 8mm;
+    min-height: unset;
+  }
+  .document-pages-wrapper {
+    padding: 1.5rem 0.5rem;
+    gap: 1.5rem;
+  }
+}
+
+/* ---- Mobile (≤640px) ---- */
+@media (max-width: 640px) {
+  html { font-size: 14px; }
+
+  /* ---- Navbar ---- */
+  .top-nav {
+    flex-wrap: nowrap;
+    padding: 0.5rem 0.75rem;
+    gap: 0.5rem;
+  }
+  .brand-text { display: none; }
+  .brand-logo { width: 34px; height: 34px; }
+
+  /* Hide label text inside view toggle on small screens */
+  .view-btn span { display: none; }
+  .view-btn { padding: 0.4rem 0.75rem; gap: 0; }
+
+  .nav-right { gap: 0.35rem; }
+  .btn-icon { width: 32px; height: 32px; font-size: 0.8rem; }
+
+  /* ---- Quick Bar ---- */
+  .quick-bar-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.4rem 0;
+  }
+  .profile-chip { flex-wrap: wrap; gap: 0.4rem; }
+  .quick-bar-actions {
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+  .status-indicator { font-size: 0.7rem; }
+
+  /* ---- Studio Hero ---- */
+  .hero-title { font-size: 1.6rem; }
+  .hero-description { font-size: 0.9rem; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .stat-number { font-size: 1.2rem; }
+
+  /* ---- Day Tabs ---- */
+  .day-nav-tabs {
+    gap: 0.35rem;
+    padding-bottom: 0.85rem;
+    margin-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .day-nav-tabs::-webkit-scrollbar { display: none; }
+  .day-tab-btn {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.8rem;
+    gap: 0.4rem;
+  }
+  .day-num { width: 18px; height: 18px; font-size: 0.65rem; }
+
+  /* ---- Cards ---- */
+  .card-box { padding: 1rem; border-radius: var(--radius-md); }
+  .card-header-flex {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+  .card-header-flex h3 { font-size: 1rem; }
+
+  /* ---- Info Items ---- */
+  .info-field-group { gap: 0.65rem; }
+  .info-item { padding: 0.6rem 0.75rem; }
+
+  /* ---- Confidence Pills ---- */
+  .confidence-selector { flex-direction: column; gap: 0.4rem; }
+  .confidence-pill { padding: 0.45rem; font-size: 0.8rem; }
+
+  /* ---- Overview Tab Syllabus ---- */
+  .syllabus-item { flex-direction: row; gap: 0.75rem; padding: 0.75rem; }
+  .syllabus-day-badge { min-width: 40px; height: 40px; font-size: 0.7rem; }
+  .syllabus-info h4 { font-size: 0.88rem; }
+  .syllabus-info p { font-size: 0.78rem; }
+
+  /* ---- KPI Cards ---- */
+  .kpi-cards-grid { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+  .kpi-val { font-size: 1.3rem; }
+
+  /* ---- Document Toolbar ---- */
+  .document-toolbar { top: 50px; }
+  .toolbar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.4rem 0;
+  }
+  .toolbar-info { font-size: 0.78rem; }
+  .toolbar-actions { width: 100%; display: flex; gap: 0.5rem; }
+  .toolbar-actions .btn { flex: 1; font-size: 0.78rem; padding: 0.4rem 0.6rem; }
+
+  /* ---- A4 Document Pages ---- */
+  .document-pages-wrapper { padding: 1rem 0.25rem; gap: 1rem; }
+  .printable-a4-page {
+    width: 100% !important;
+    min-height: unset;
+    padding: 5mm 4mm !important;
+    font-size: 11px;
+    border-radius: 4px;
+  }
+  .page-border-frame {
+    padding: 4mm 5mm;
+    min-height: unset;
+    border-width: 2px;
+  }
+
+  /* ---- Modals ---- */
+  .modal-content {
+    width: 95vw !important;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 1.25rem !important;
+    border-radius: var(--radius-md) !important;
+  }
+  .form-grid, .form-grid-3 { grid-template-columns: 1fr; }
+
+  /* ---- Buttons full-width in forms ---- */
+  .modal-footer { flex-direction: column; gap: 0.5rem; }
+  .modal-footer .btn { width: 100%; justify-content: center; }
+
+  /* ---- Charts ---- */
+  canvas { max-width: 100% !important; height: auto !important; }
+  .chart-container { overflow-x: auto; }
+
+  /* ---- Reflection cards ---- */
+  .reflection-card { padding: 0.7rem 0.9rem; }
+  .reflection-question, .reflection-answer { font-size: 0.88rem; }
+
+  /* ---- Code Editor ---- */
+  .code-editor-box { font-size: 0.72rem; padding: 0.75rem; }
+}
+
+/* ---- Small phones (≤400px) ---- */
+@media (max-width: 400px) {
+  html { font-size: 13px; }
+  .hero-title { font-size: 1.35rem; }
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+  .day-tab-btn { padding: 0.45rem 0.65rem; font-size: 0.75rem; }
+  .card-box { padding: 0.75rem; }
+  .kpi-cards-grid { grid-template-columns: 1fr; }
+  .printable-a4-page { font-size: 10px; padding: 3mm !important; }
+  .page-border-frame { padding: 3mm 4mm; }
+}

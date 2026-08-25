@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BFINE | AI-Powered Microsoft Excel Workshop Portal</title>
+  <meta name="description" content="Official Institutional Report & Interactive Learning Portal for the 5-Day AI-Powered Microsoft Excel Workshop at N.B.K.R. Institute of Science and Technology (NBKRIST)." />
+  
+  <!-- Google Fonts: Outfit & Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Chart.js for Interactive Demos -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- App Shell Container -->
+  <div id="app" class="app-root">
+
+    <!-- Top Navigation Bar (Hidden in Print) -->
+    <header class="top-nav no-print">
+      <div class="nav-left">
+        <div class="institute-brand">
+          <img src="assets/logo.svg" alt="BFINE" class="brand-logo" />
+          <div class="brand-text">
+            <span class="brand-title">BFINE</span>
+            <span class="brand-subtitle">BE READY TO SURVIVE ALONE</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- View Switcher Tabs -->
+      <div class="nav-center">
+        <div class="view-toggle-pill" role="tablist">
+          <button id="tab-studio-view" class="view-btn active" onclick="switchMainView('studio')">
+            <i class="fa-solid fa-laptop-code"></i>
+            <span>Interactive Studio</span>
+          </button>
+          <button id="tab-document-view" class="view-btn" onclick="switchMainView('document')">
+            <i class="fa-solid fa-file-lines"></i>
+            <span>Institutional Record (Print/PDF)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="nav-right">
+        <button class="btn btn-outline btn-sm" onclick="openStudentModal()" title="Edit Student Profile">
+          <i class="fa-solid fa-user-pen"></i>
+          <span>Edit Profile</span>
+        </button>
+
+        <button class="btn btn-outline btn-sm" onclick="openDataModal()" title="Import/Export Document JSON">
+          <i class="fa-solid fa-arrows-rotate"></i>
+          <span>Data JSON</span>
+        </button>
+
+        <button class="btn btn-primary btn-sm" onclick="handlePrintDocument()" title="Print or Save as PDF">
+          <i class="fa-solid fa-print"></i>
+          <span>Print / PDF</span>
+        </button>
+
+        <button id="theme-toggle-btn" class="btn btn-icon" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Global Student Info Quick Bar (Hidden in Print) -->
+    <section class="student-quick-bar no-print">
+      <div class="container quick-bar-content">
+        <div class="profile-chip">
+          <div class="chip-avatar"><i class="fa-solid fa-user-graduate"></i></div>
+          <div class="chip-details">
+            <span class="chip-label">Student</span>
+            <strong class="chip-value" id="bar-student-name">SHAIK HANEEFA</strong>
+          </div>
+        </div>
+
+        <div class="profile-chip">
+          <div class="chip-avatar"><i class="fa-solid fa-id-card"></i></div>
+          <div class="chip-details">
+            <span class="chip-label">Roll Number</span>
+            <strong class="chip-value" id="bar-roll-no">23KB1A3096</strong>
+          </div>
+        </div>
+
+        <div class="profile-chip">
+          <div class="chip-avatar"><i class="fa-solid fa-code-branch"></i></div>
+          <div class="chip-details">
+            <span class="chip-label">Branch / Year</span>
+            <strong class="chip-value" id="bar-branch">AI &amp; DS – B Section / B.Tech 4th Year</strong>
+          </div>
+        </div>
+
+        <div class="profile-chip">
+          <div class="chip-avatar"><i class="fa-solid fa-building-columns"></i></div>
+          <div class="chip-details">
+            <span class="chip-label">Institution</span>
+            <strong class="chip-value" id="bar-college">N.B.K.R. Institute of Science and Technology</strong>
+          </div>
+        </div>
+
+        <div class="quick-bar-actions">
+          <span class="status-indicator">
+            <span class="status-dot"></span> Autosaved to Local Storage
+          </span>
+          <button class="btn-text-edit" onclick="openStudentModal()">
+            <i class="fa-solid fa-pencil"></i> Quick Edit
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- VIEW 1: INTERACTIVE STUDIO & LEARNING HUB                     -->
+    <!-- ============================================================= -->
+    <main id="view-studio" class="view-panel active no-print">
+      <div class="container">
+        
+        <!-- Hero Header -->
+        <div class="studio-hero">
+          <div class="hero-text">
+            <div class="badge-group">
+              <span class="badge badge-primary"><i class="fa-solid fa-certificate"></i> NBKRIST Autonomous</span>
+              <span class="badge badge-info"><i class="fa-solid fa-robot"></i> Microsoft Copilot &amp; AI</span>
+              <span class="badge badge-success"><i class="fa-solid fa-check-double"></i> 5-Day Capstone Record</span>
+            </div>
+            <h1 class="hero-title">AI-Powered Microsoft Excel Workshop</h1>
+            <p class="hero-description">
+              From Basics to Advanced Analytics — Daily Student Record, Interactive Analytics Simulators, and Institutional Documentation.
+            </p>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-card">
+              <span class="stat-number">5</span>
+              <span class="stat-label">Workshop Days</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Completion</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">5.0 <i class="fa-solid fa-star text-amber"></i></span>
+              <span class="stat-label">Avg Rating</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">25</span>
+              <span class="stat-label">Reflection Q&amp;As</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Studio Day Navigation Tabs -->
+        <nav class="day-nav-tabs" role="tablist">
+          <button class="day-tab-btn active" onclick="selectDayTab('overview')">
+            <i class="fa-solid fa-compass"></i> Overview &amp; Certificate
+          </button>
+          <button class="day-tab-btn" onclick="selectDayTab('day1')">
+            <span class="day-num">01</span> Excel Basics &amp; Copilot
+          </button>
+          <button class="day-tab-btn" onclick="selectDayTab('day2')">
+            <span class="day-num">02</span> Power Query &amp; Cleaning
+          </button>
+          <button class="day-tab-btn" onclick="selectDayTab('day3')">
+            <span class="day-num">03</span> Pivot Tables &amp; AI Insights
+          </button>
+          <button class="day-tab-btn" onclick="selectDayTab('day4')">
+            <span class="day-num">04</span> Interactive Dashboards &amp; KPIs
+          </button>
+          <button class="day-tab-btn" onclick="selectDayTab('day5')">
+            <span class="day-num">05</span> Office Scripts &amp; Capstone
+          </button>
+        </nav>
+
+        <!-- Studio Tab Contents -->
+        <div id="studio-tab-content" class="studio-tab-content-area">
+          <!-- Dynamic Content Rendered by JavaScript -->
+        </div>
+
+      </div>
+    </main>
+
+    <!-- ============================================================= -->
+    <!-- VIEW 2: OFFICIAL INSTITUTIONAL DOCUMENT (PRINT / PDF)          -->
+    <!-- ============================================================= -->
+    <main id="view-document" class="view-panel document-mode-container">
+      <!-- Document Toolbar (Visible only on screen, hidden in print) -->
+      <div class="document-toolbar no-print">
+        <div class="container toolbar-inner">
+          <div class="toolbar-info">
+            <i class="fa-solid fa-file-pdf"></i>
+            <span><strong>Institutional Report Preview:</strong> Formatted for A4. In print settings, ensure <em>Headers &amp; Footers</em> is unchecked.</span>
+          </div>
+          <div class="toolbar-actions">
+            <button class="btn btn-outline btn-sm" onclick="switchMainView('studio')">
+              <i class="fa-solid fa-arrow-left"></i> Back to Studio
+            </button>
+            <button class="btn btn-primary btn-sm" onclick="handlePrintDocument()">
+              <i class="fa-solid fa-print"></i> Print All Pages (PDF)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Printable Pages Wrapper -->
+      <div class="document-pages-wrapper" id="printable-pages-container">
+        <!-- Rendered dynamically by JavaScript to match 100% of the document -->
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- MODALS                                                        -->
+  <!-- ============================================================= -->
+
+  <!-- Student Profile Edit Modal -->
+  <div id="modal-profile" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-user-pen"></i> Edit Student &amp; Institution Profile</h3>
+        <button class="modal-close" onclick="closeModal('modal-profile')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-subtitle">Update student information to dynamically sync across the certificate, index, and all 5 daily reports.</p>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="input-student-name">Student Full Name</label>
+            <input type="text" id="input-student-name" class="form-control" placeholder="e.g. SHAIK HANEEFA" />
+          </div>
+
+          <div class="form-group">
+            <label for="input-roll-no">Roll No. / Student ID</label>
+            <input type="text" id="input-roll-no" class="form-control" placeholder="e.g. 23KB1A3096" />
+          </div>
+
+          <div class="form-group">
+            <label for="input-branch">Branch &amp; Section / Year</label>
+            <input type="text" id="input-branch" class="form-control" placeholder="e.g. AI & DS – B Section / B.Tech 4th Year" />
+          </div>
+
+          <div class="form-group">
+            <label for="input-college">College / Institution</label>
+            <input type="text" id="input-college" class="form-control" placeholder="e.g. N.B.K.R. Institute of Science and Technology (NBKRIST)" />
+          </div>
+
+          <div class="form-group">
+            <label for="input-lab-name">Laboratory / Workshop Title</label>
+            <input type="text" id="input-lab-name" class="form-control" placeholder="e.g. AI-Powered Microsoft Excel Laboratory" />
+          </div>
+
+          <div class="form-group">
+            <label for="input-acad-year">Academic Year / Session</label>
+            <input type="text" id="input-acad-year" class="form-control" placeholder="e.g. 2025-2026" />
+          </div>
+
+          <div class="form-group">
+            <label for="input-staff-incharge">Staff Member In-charge</label>
+            <input type="text" id="input-staff-incharge" class="form-control" placeholder="e.g. Dr. K. Ramanjaneyulu, M.Tech, Ph.D" />
+          </div>
+
+          <div class="form-group">
+            <label for="input-examiner">Examiner Name</label>
+            <input type="text" id="input-examiner" class="form-control" placeholder="e.g. Prof. M. Srinivasulu" />
+          </div>
+        </div>
+
+        <h4 class="mt-4 mb-2"><i class="fa-regular fa-calendar-days"></i> Workshop Session Dates</h4>
+        <div class="form-grid-3">
+          <div class="form-group">
+            <label for="input-date-day1">Day 1 Date</label>
+            <input type="text" id="input-date-day1" class="form-control" placeholder="e.g. 18 / 08 / 2026" />
+          </div>
+          <div class="form-group">
+            <label for="input-date-day2">Day 2 Date</label>
+            <input type="text" id="input-date-day2" class="form-control" placeholder="e.g. 19 / 08 / 2026" />
+          </div>
+          <div class="form-group">
+            <label for="input-date-day3">Day 3 Date</label>
+            <input type="text" id="input-date-day3" class="form-control" placeholder="e.g. 20 / 08 / 2026" />
+          </div>
+          <div class="form-group">
+            <label for="input-date-day4">Day 4 Date</label>
+            <input type="text" id="input-date-day4" class="form-control" placeholder="e.g. 21 / 08 / 2026" />
+          </div>
+          <div class="form-group">
+            <label for="input-date-day5">Day 5 Date</label>
+            <input type="text" id="input-date-day5" class="form-control" placeholder="e.g. 22 / 08 / 2026" />
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal('modal-profile')">Cancel</button>
+        <button class="btn btn-primary" onclick="saveStudentProfile()"><i class="fa-solid fa-floppy-disk"></i> Save &amp; Apply Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JSON Data Import / Export Modal -->
+  <div id="modal-data" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-code"></i> Document Data Backup &amp; Transfer</h3>
+        <button class="modal-close" onclick="closeModal('modal-data')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-subtitle">You can export the entire document data as JSON, edit it, import a backup, or restore to initial default OCR values.</p>
+        
+        <div class="form-group">
+          <label for="json-data-area">JSON Payload</label>
+          <textarea id="json-data-area" class="form-control font-mono" rows="12"></textarea>
+        </div>
+
+        <div class="data-action-buttons">
+          <button class="btn btn-outline" onclick="copyJsonToClipboard()">
+            <i class="fa-regular fa-copy"></i> Copy JSON
+          </button>
+          <button class="btn btn-outline" onclick="downloadJsonFile()">
+            <i class="fa-solid fa-download"></i> Download .json
+          </button>
+          <label class="btn btn-outline btn-file-upload">
+            <i class="fa-solid fa-upload"></i> Upload .json
+            <input type="file" id="file-json-upload" accept=".json" onchange="uploadJsonFile(event)" style="display:none;" />
+          </label>
+          <button class="btn btn-danger-outline" onclick="confirmResetDefaults()">
+            <i class="fa-solid fa-rotate-left"></i> Reset to Defaults
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal('modal-data')">Close</button>
+        <button class="btn btn-primary" onclick="applyJsonData()"><i class="fa-solid fa-check"></i> Apply JSON</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- App Script -->
+  <script src="app.js"></script>
+</body>
+</html>
